@@ -1,5 +1,6 @@
 import React from 'react'
 import Task from './task'
+import AddTask from './add-task'
 
 class Todo extends React.Component 
 {
@@ -44,16 +45,35 @@ class Todo extends React.Component
             return this        
         })
         
-
-        console.log(t)
         this.setState({
             tasks: t
         })
     }
 
-    render() {
+    addTask(description) {
+        let newTask = {}
+        let largest = 0
+        this.state.tasks.filter((task) => {
+            if (task.task_id > largest) {
+                largest = task.task_id
+            }
+        })
+        
+        newTask = {
+            task_id: (largest+1),
+            task_description: description,
+            done: false
+        }
 
-        let elemRender = []
+        this.setState({
+            tasks: this.state.tasks.concat([newTask])
+        })
+
+        this.render()
+    }
+
+    render() {
+        let elemRender = [<AddTask key="0" onClick={d => this.addTask(d)} />]
         this.state.tasks.map((task) => {
 
             elemRender.push(

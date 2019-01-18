@@ -6,13 +6,6 @@ const Task = (props) => (
                      onChange={props.onChange}
                      defaultChecked={props.done}/></span>
         <span className={props.done ? 'task-done' : ''}>{ props.task_description }</span>
-        <style jsx>
-        {`
-            .task-done {
-                text-decoration: line-through;
-            }
-        `}
-        </style>
     </div>
 )
 
