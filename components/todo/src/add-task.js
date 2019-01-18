@@ -16,9 +16,14 @@ class AddTask extends React.Component
             <form>
                 <input type="text" value={this.state.inputValue} onChange={e => this.updateInput(e)}/>
                 <button onClick={e => {
-                    e.preventDefault()
-                    this.props.onClick(this.state.inputValue)}
-                }>Add Task</button>
+                        e.preventDefault()
+                        this.props.onClick(this.state.inputValue)
+                        this.setState({
+                            inputValue: ''
+                        })
+                    }}>
+                    Add Task
+                </button>
             </form>
         )
     }
