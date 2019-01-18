@@ -14,6 +14,7 @@ class AddTask extends React.Component
     {
         return (
             <form>
+                <div onClick={this.props.archive} className="todo-archive">Archive</div>
                 <input type="text" value={this.state.inputValue} onChange={e => this.updateInput(e)}/>
                 <button onClick={e => {
                         e.preventDefault()
@@ -24,6 +25,18 @@ class AddTask extends React.Component
                     }}>
                     Add Task
                 </button>
+                <style jsx>
+                {`
+                    .todo-archive {
+                        color: blue;
+                        font-size: 1.1em;
+                    }
+
+                    .todo-archive:hover {
+                        cursor: pointer;
+                    }
+                `}
+                </style>
             </form>
         )
     }

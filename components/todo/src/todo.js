@@ -14,7 +14,6 @@ class Todo extends React.Component
     componentDidMount() {
         let tasks = localStorage.getItem('nexttodo')
         if (tasks !== null) {
-            console.log(tasks)
             tasks = JSON.parse(tasks)
             this.setState({
                 tasks
@@ -63,13 +62,29 @@ class Todo extends React.Component
         }
     }
 
+    async archive() {
+        const t = await this.state.tasks.filter(task => task.done === false)
+        this.setState({
+            tasks: t
+        })
+
+        console.log(this.state.tasks)
+
+        this.saveLocalStorage(this.state.tasks)
+    }
+
     saveLocalStorage(list)
     {
         localStorage.setItem('nexttodo', JSON.stringify(list))
     }
 
     render() {
-        let elemRender = [<AddTask key="0" onClick={desc => this.addTask(desc)} />]
+        let elemRender = [
+            <AddTask 
+                key="0" 
+                onClick={desc => this.addTask(desc)}
+                archive={() => this.archive()}/>
+        ]
         
         this.state.tasks.map((task) => {
             elemRender.push(
