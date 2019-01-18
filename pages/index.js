@@ -1,5 +1,5 @@
 import Layout from '../components/layout/layout'
-import Todo from '../components/todo/todo'
+import Todo from '../components/todo/src/todo'
 
 export default () => (
     <Layout>
